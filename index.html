@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="Seu próximo iPhone está aqui. Design, tecnologia e confiança em um só lugar. Encontre seu próximo iPhone com atendimento personalizado na PG Smart Tech.">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="stylesheet" href="styles.css">
+<title>PG Smart Tech | Seu próximo iPhone</title>
+
+</head>
+<body>
+    <header>
+
+            <div class="wrap nav">
+            <a class="brand" href="#inicio">PG <b>SMART TECH</b><small>TECNOLOGIA & CONFIANÇA</small>
+            </a>
+        <nav class="links"><a href="#inicio">Início</a>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#vantagens">Vantagens</a>
+            <a href="#contact">Contato</a>
+        </nav>
+        <button class="cartbtn" id="openCart">Sacola <span id="count">0</span>
+        </button>
+        </div>
+    </header>
+    <main>
+    <section class="wrap hero" id="inicio">
+            <div class="reveal">
+                <span class="eyebrow">
+                    ✦ Sua experiência Apple começa aqui
+                </span>
+            <h1>Seu próximo
+                <br>
+                    <em>
+                        iPhone
+                    </em>
+                    está
+                <br>
+                    aqui.
+            </h1>
+            <p>Design,
+                tecnologia e confiança em um só lugar.
+                Encontre seu próximo iPhone com atendimento personalizado na PG Smart Tech.
+            </p>
+            <!--menus/ catalogo-->
+            <div class="actions">
+                <a class="btn" href="#catalogo">
+                    Explorar catálogo ↘
+                </a>
+                <a class="btn secondary"
+                href="#contato">
+                    Falar com a loja
+                </a>
+                </div>
+                <div class="trust">
+                <span>
+                    Atendimento personalizado
+                </span>
+                <span>
+                    Compra facilitada
+                </span>
+                <span>
+                    Suporte no WhatsApp
+                </span>
+            </div>
+        </div>
+
+        <div class="visual reveal">
+            <div class="orbit"></div>
+            <div class="phone">
+                <div class="screen">
+                    <b>PG</b>
+                    <small>SMART TECH</small>
+                </div>
+            </div>
+            <div class="pill p1">
+                <b>TECNOLOGIA</b> que acompanha você
+            </div>
+            <div class="pill p2">
+                <b>SEU NOVO IPHONE</b> a poucos cliques
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="catalogo">
+        <div class="wrap">
+            <div class="head reveal">
+                <span class="kicker">Catálogo</span>
+                <h2>Encontre seu próximo 
+                    <span style="color:var(--gold)">
+                        iPhone.</span></h2>
+                <p>Confira os modelos e monte seu pedido. Confirme cores,
+                    armazenamento e valores pelo WhatsApp.
+                </p>
+            </div>
+            <div class="filters" id="filters">
+                <button class="chip active" data-filter="Todos">Todos</button>
+                <button class="chip" data-filter="iPhone">iPhones</button>
+                <button class="chip" data-filter="Acessórios">Acessórios</button>
+                <button class="chip" data-filter="Outros">Outros</button>
+            </div>
+            <div class="grid" id="grid"></div>
+        </div>
+    </section>
+
+    <section class="section" id="vantagens">
+        <div class="wrap">
+            <div class="head reveal">
+                <span class="kicker">
+                    Por que escolher a PG?
+                </span>
+                <h2>
+                    Uma compra com mais
+                    <span style="color:var(--gold)">
+                        tranquilidade.
+                    </span>
+                </h2>
+                <p>Atendimento próximo do primeiro contato até a finalização do pedido.</p>
+            </div>
+            <div class="benefits">
+                <article class="benefit reveal">
+                    <strong>✦</strong>
+                    <h3>Atendimento exclusivo</h3>
+                    <p>Tire dúvidas e receba ajuda para encontrar o aparelho ideal para você.</p>
+                </article>
+                <article class="benefit reveal">
+                    <strong>◇</strong>
+                    <h3>Pedido simplificado</h3>
+                    <p>Adicione produtos à sacola e envie seu pedido diretamente pelo WhatsApp.</p>
+                </article>
+                <article class="benefit reveal">
+                    <strong>⌁</strong>
+                    <h3>Informações transparentes</h3>
+                    <p>Consulte disponibilidade, condições de pagamento e detalhes antes de fechar.</p>
+                </article>
+
+
+            <div class="wrap"><div class="cta reveal">
+                <span class="kicker">
+                    PG Smart Tech
+                </span>
+                <h2>Pronto para dar o próximo 
+                    <span style="color:var(--gold)">
+                        upgrade?
+                    </span>
+                </h2>
+                <p>
+                    Chame a gente e consulte os modelos disponíveis hoje.
+                </p>
+                <a class="btn" id="contact" href="https://www.instagram.com/pg.smarttech/"
+                    target="_blank" rel="noopener">
+                    Conversar com a loja ↗
+                </a>
+            </div>
+        </div>
+    </section>
+    </main>
+    <!--footer-->
+    <footer>
+        <div class="wrap foot"><span>©
+        <span id="year"></span> PG Smart Tech. | todos os direitos reservados</span>
+        <a class="social" href="https://www.instagram.com/pg.smarttech/"
+            target="_blank" rel="noopener">Instagram @pg.smarttech ↗
+        </a>
+        <span>Preços e disponibilidade sujeitos a confirmação.</span>
+        </div>
+    </footer>
+<!--sacola-->
+    <div class="overlay" id="overlay"></div>
+    <aside class="drawer" id="drawer"><div class="drawerhead">
+            <h2>
+                Sua sacola
+            </h2>
+            <button class="close" id="close">
+                ×
+            </button>
+        </div>
+        <div class="items" id="items">
+        </div>
+        <div class="bottom">
+            <div class="total">
+            <span>Total estimado</span>
+            <strong id="total">R$ 0,00</strong></div>
+            <button class="btn checkout" id="checkout">Finalizar pedido no WhatsApp ↗</button>
+            <p class="hint">O pedido será enviado para confirmação. Valores, estoque,
+            entrega e pagamento serão confirmados pela loja.
+            </p>
+        </div>
+    </aside>
+    <script src="script.js"></script>
+</body>
+</html>

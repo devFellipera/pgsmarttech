@@ -1,0 +1,1508 @@
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PG SMART TECH | iPhone é Aqui - Tecnologia Apple Premium</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Orbitron for Futuristic Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              dark: {
+                900: "#070709",
+                800: "#0e0e12",
+                700: "#16161e",
+                600: "#22222e",
+              },
+              gold: {
+                100: "#fff7d1",
+                300: "#ffe270",
+                400: "#f3a812",
+                500: "#ffd700",
+                600: "#d4af37",
+                700: "#997a15",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              tech: ["Orbitron", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #070709;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #22222e;
+        border-radius: 4px;
+        border: 1px solid rgba(243, 168, 18, 0.3);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #d4af37;
+      }
+
+      /* Gold Gradient Text */
+      .gold-gradient-text {
+        background: linear-gradient(
+          135deg,
+          #fff3b0 0%,
+          #ffd700 50%,
+          #b8860b 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Gold Metallic Gradient Background */
+      .gold-gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #ffd700 0%,
+          #f3a812 50%,
+          #997a15 100%
+        );
+      }
+
+      /* Cyber Glassmorphism */
+      .glass-card {
+        background: rgba(18, 18, 24, 0.75);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 215, 0, 0.15);
+      }
+
+      .glass-card-hover {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .glass-card-hover:hover {
+        border-color: rgba(255, 215, 0, 0.6);
+        box-shadow:
+          0 0 25px rgba(243, 168, 18, 0.25),
+          inset 0 0 15px rgba(255, 215, 0, 0.05);
+        transform: translateY(-6px);
+      }
+
+      /* Glowing Neon Effects */
+      .glow-gold {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.35);
+      }
+      .glow-gold-lg {
+        box-shadow: 0 0 40px rgba(243, 168, 18, 0.4);
+      }
+      .glow-text {
+        text-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+      }
+
+      /* Custom Animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-12px) rotate(1deg);
+        }
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes pulse-slow {
+        0%,
+        100% {
+          opacity: 0.2;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(1.08);
+        }
+      }
+      .animate-pulse-slow {
+        animation: pulse-slow 8s ease-in-out infinite;
+      }
+
+      /* Cyber Grid Background */
+      .cyber-grid {
+        background-size: 40px 40px;
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(255, 215, 0, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 215, 0, 0.03) 1px,
+            transparent 1px
+          );
+      }
+    </style>
+  </head>
+  <body
+    class="bg-dark-900 text-gray-100 font-sans antialiased selection:bg-gold-500 selection:text-black overflow-x-hidden"
+  >
+    <!-- Interactive Background Particles Canvas -->
+    <canvas
+      id="bgCanvas"
+      class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"
+    ></canvas>
+
+    <!-- Navigation Bar -->
+    <header
+      class="sticky top-0 z-40 bg-dark-900/80 backdrop-blur-md border-b border-gold-500/20 transition-all duration-300"
+      id="navbar"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between"
+      >
+        <!-- Brand Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div
+            class="w-10 h-10 rounded-full border-2 border-gold-500 flex items-center justify-center bg-black/80 glow-gold transition-transform duration-300 group-hover:scale-105"
+          >
+            <i class="fa-brands fa-apple text-gold-400 text-xl"></i>
+          </div>
+          <div>
+            <span
+              class="font-tech text-xl font-bold tracking-wider text-white block leading-none"
+            >
+              PG <span class="gold-gradient-text">SMART TECH</span>
+            </span>
+            <span
+              class="text-[9px] font-medium tracking-widest text-gold-400/80 uppercase block mt-1"
+            >
+              IPHONE É AQUI
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a
+            href="#hero"
+            class="text-gray-300 hover:text-gold-400 transition-colors"
+            >Início</a
+          >
+          <a
+            href="#catalog"
+            class="text-gray-300 hover:text-gold-400 transition-colors"
+            >Catálogo</a
+          >
+          <a
+            href="#features"
+            class="text-gray-300 hover:text-gold-400 transition-colors"
+            >Diferenciais</a
+          >
+          <a
+            href="#instagram"
+            class="text-gray-300 hover:text-gold-400 transition-colors"
+            >Instagram</a
+          >
+          <a
+            href="#reviews"
+            class="text-gray-300 hover:text-gold-400 transition-colors"
+            >Avaliações</a
+          >
+        </nav>
+
+        <!-- Actions & Cart Button -->
+        <div class="flex items-center gap-4">
+          <a
+            href="https://instagram.com/pg.smarttech"
+            target="_blank"
+            rel="noopener"
+            class="hidden sm:flex items-center gap-2 text-xs font-semibold text-gold-400 hover:text-white border border-gold-500/30 px-3 py-2 rounded-lg hover:border-gold-500 transition-all"
+          >
+            <i class="fa-brands fa-instagram text-base"></i>
+            <span>@pg.smarttech</span>
+          </a>
+
+          <!-- Cart Button Trigger -->
+          <button
+            onclick="toggleCartDrawer()"
+            class="relative bg-gold-500/10 hover:bg-gold-500/20 text-gold-400 border border-gold-500/40 p-2.5 rounded-xl transition-all flex items-center gap-2 glow-gold"
+          >
+            <i class="fa-solid fa-cart-shopping text-lg"></i>
+            <span class="text-xs font-bold font-tech hidden sm:inline"
+              >CARRINHO</span
+            >
+            <span
+              id="cartBadge"
+              class="absolute -top-2 -right-2 bg-gold-500 text-black font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center shadow-md"
+              >0</span
+            >
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="relative z-10">
+      <!-- Hero Section -->
+      <section
+        id="hero"
+        class="relative min-h-[90vh] flex items-center justify-center py-16 cyber-grid overflow-hidden"
+      >
+        <!-- Neon Background Orbs -->
+        <div
+          class="absolute top-1/4 left-10 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow"
+        ></div>
+        <div
+          class="absolute bottom-10 right-10 w-80 h-80 bg-gold-600/10 rounded-full blur-3xl pointer-events-none"
+        ></div>
+
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+        >
+          <!-- Left Text Column -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div
+              class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold tracking-wide uppercase"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-gold-400 animate-ping"
+              ></span>
+              A Melhor Loja Apple de São Paulo & Região
+            </div>
+
+            <h1
+              class="text-4xl sm:text-6xl lg:text-7xl font-tech font-extrabold text-white leading-tight tracking-tight"
+            >
+              O FUTURO DA <br />
+              <span class="gold-gradient-text glow-text">TECNOLOGIA APPLE</span>
+              <br />
+              NA SUA MÃO
+            </h1>
+
+            <p
+              class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light"
+            >
+              iPhones novos e seminovos premium rigorosamente testados, com
+              garantia total, procedência verificada e entrega expressa. Seu
+              próximo Apple está aqui.
+            </p>
+
+            <!-- CTAs -->
+            <div
+              class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4"
+            >
+              <a
+                href="#catalog"
+                class="w-full sm:w-auto px-8 py-4 rounded-xl gold-gradient-bg text-black font-bold font-tech text-center hover:brightness-110 transition-all shadow-lg glow-gold hover:scale-105 active:scale-95 flex items-center justify-center gap-3"
+              >
+                <i class="fa-solid fa-mobile-screen text-lg"></i>
+                VER CATÁLOGO COMPLETO
+              </a>
+
+              <a
+                href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20PG%20Smart%20Tech%20e%20gostaria%20de%20informa%C3%A7%C3%B5es."
+                target="_blank"
+                rel="noopener"
+                class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-gold-400 hover:text-white font-bold font-tech text-center border border-gold-500/40 hover:border-gold-400 transition-all flex items-center justify-center gap-3 hover:bg-gold-500/10"
+              >
+                <i class="fa-brands fa-whatsapp text-xl text-green-400"></i>
+                FALAR NO WHATSAPP
+              </a>
+            </div>
+
+            <!-- Trust Micro-Badges -->
+            <div
+              class="pt-8 border-t border-gray-800/80 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-gray-400 font-medium"
+            >
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved text-gold-400 text-sm"></i>
+                <span>Garantia de até 1 Ano</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-credit-card text-gold-400 text-sm"></i>
+                <span>Até 18x no Cartão</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-truck-fast text-gold-400 text-sm"></i>
+                <span>Entrega Rápida</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right 3D Visual Card -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative w-full max-w-md animate-float">
+              <!-- Glow Aura -->
+              <div
+                class="absolute inset-0 gold-gradient-bg rounded-3xl opacity-20 blur-2xl transform rotate-6"
+              ></div>
+
+              <!-- Futuristic Display Card -->
+              <div
+                class="relative glass-card rounded-3xl p-6 border border-gold-500/30 glow-gold"
+              >
+                <div
+                  class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-dark-800 flex flex-col items-center justify-between p-6 border border-gold-500/20"
+                >
+                  <!-- Top Badge -->
+                  <div class="w-full flex justify-between items-center z-10">
+                    <span
+                      class="bg-gold-500 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider font-tech"
+                      >Destaque Tech</span
+                    >
+                    <i class="fa-brands fa-apple text-gold-400 text-2xl"></i>
+                  </div>
+
+                  <!-- iPhone Mockup Imagery -->
+                  <div class="relative my-4 group">
+                    <div
+                      class="absolute inset-0 bg-gold-400/20 rounded-full blur-xl group-hover:bg-gold-400/40 transition-all"
+                    ></div>
+                    <img
+                      src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80"
+                      alt="iPhone 15 Pro Max PG Smart Tech"
+                      class="relative z-10 max-h-64 object-contain rounded-xl drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)]"
+                    />
+                  </div>
+
+                  <!-- Specs Overlay -->
+                  <div class="w-full text-center z-10 space-y-2">
+                    <h3 class="font-tech text-xl font-bold text-white">
+                      iPhone 15 Pro Max
+                    </h3>
+                    <p class="text-gold-400 text-xs font-semibold">
+                      Titânio Natural • 256GB / 512GB
+                    </p>
+                    <div class="flex items-center justify-center gap-2 pt-1">
+                      <span class="text-xs text-gray-400 line-through"
+                        >R$ 8.999</span
+                      >
+                      <span
+                        class="text-lg font-bold font-tech text-white bg-gold-500/20 px-3 py-0.5 rounded-lg border border-gold-500/30"
+                        >R$ 7.290</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats & Highlights Bar -->
+      <section
+        class="border-y border-gold-500/20 bg-dark-800/80 backdrop-blur-md py-8"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="p-4 rounded-xl glass-card border-gold-500/10">
+              <i
+                class="fa-solid fa-certificate text-gold-400 text-2xl mb-2"
+              ></i>
+              <h4 class="font-tech font-bold text-white text-lg">
+                100% Originais
+              </h4>
+              <p class="text-xs text-gray-400 mt-1">
+                Aparelhos homologados e revisados
+              </p>
+            </div>
+            <div class="p-4 rounded-xl glass-card border-gold-500/10">
+              <i
+                class="fa-solid fa-credit-card text-gold-400 text-2xl mb-2"
+              ></i>
+              <h4 class="font-tech font-bold text-white text-lg">
+                Até 18x Facilidades
+              </h4>
+              <p class="text-xs text-gray-400 mt-1">
+                Aceitamos todos os cartões
+              </p>
+            </div>
+            <div class="p-4 rounded-xl glass-card border-gold-500/10">
+              <i
+                class="fa-solid fa-arrows-rotate text-gold-400 text-2xl mb-2"
+              ></i>
+              <h4 class="font-tech font-bold text-white text-lg">
+                Pegamos Seu Usado
+              </h4>
+              <p class="text-xs text-gray-400 mt-1">
+                A melhor avaliação do seu seminovo
+              </p>
+            </div>
+            <div class="p-4 rounded-xl glass-card border-gold-500/10">
+              <i class="fa-solid fa-bolt text-gold-400 text-2xl mb-2"></i>
+              <h4 class="font-tech font-bold text-white text-lg">
+                Entrega Expressa
+              </h4>
+              <p class="text-xs text-gray-400 mt-1">
+                Receba com segurança e agilidade
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Product Catalog Section -->
+      <section id="catalog" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Section Header -->
+          <div class="text-center space-y-3 mb-12">
+            <span
+              class="text-gold-400 font-tech text-xs tracking-widest uppercase font-bold"
+              >Catálogo Exclusivo</span
+            >
+            <h2 class="text-3xl sm:text-5xl font-tech font-bold text-white">
+              ESCOLHA O SEU <span class="gold-gradient-text">NOVO APPLE</span>
+            </h2>
+            <p class="text-gray-400 text-sm max-w-xl mx-auto">
+              Selecione o modelo desejado, personalize a capacidade de
+              armazenamento e finalize diretamente pelo WhatsApp com suporte
+              individualizado.
+            </p>
+
+            <!-- Category Filter Buttons -->
+            <div
+              class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-6"
+              id="categoryFilters"
+            >
+              <button
+                onclick="filterCategory('all')"
+                class="cat-btn active bg-gold-500 text-black font-tech font-bold text-xs px-5 py-2.5 rounded-xl border border-gold-500 transition-all"
+              >
+                TODOS
+              </button>
+              <button
+                onclick="filterCategory('iphone-15')"
+                class="cat-btn glass-card text-gray-300 hover:text-gold-400 font-tech font-bold text-xs px-5 py-2.5 rounded-xl border border-gold-500/20 hover:border-gold-500/50 transition-all"
+              >
+                IPHONE 15 SERIES
+              </button>
+              <button
+                onclick="filterCategory('iphone-14')"
+                class="cat-btn glass-card text-gray-300 hover:text-gold-400 font-tech font-bold text-xs px-5 py-2.5 rounded-xl border border-gold-500/20 hover:border-gold-500/50 transition-all"
+              >
+                IPHONE 14 SERIES
+              </button>
+              <button
+                onclick="filterCategory('iphone-13')"
+                class="cat-btn glass-card text-gray-300 hover:text-gold-400 font-tech font-bold text-xs px-5 py-2.5 rounded-xl border border-gold-500/20 hover:border-gold-500/50 transition-all"
+              >
+                IPHONE 13 SERIES
+              </button>
+              <button
+                onclick="filterCategory('accessories')"
+                class="cat-btn glass-card text-gray-300 hover:text-gold-400 font-tech font-bold text-xs px-5 py-2.5 rounded-xl border border-gold-500/20 hover:border-gold-500/50 transition-all"
+              >
+                WATCH & ÁUDIO
+              </button>
+            </div>
+          </div>
+
+          <!-- Products Grid -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            id="productGrid"
+          >
+            <!-- Products dynamically rendered by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Differentials / Why Choose Section -->
+      <section
+        id="features"
+        class="py-20 bg-dark-800/50 relative border-t border-gold-500/10"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center space-y-3 mb-16">
+            <span
+              class="text-gold-400 font-tech text-xs tracking-widest uppercase font-bold"
+              >Por Que Escolher A PG Smart Tech</span
+            >
+            <h2 class="text-3xl sm:text-4xl font-tech font-bold text-white">
+              QUALIDADE &
+              <span class="gold-gradient-text">CONFIANÇA ABSOLUTA</span>
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature Card 1 -->
+            <div
+              class="glass-card glass-card-hover p-8 rounded-2xl relative overflow-hidden group"
+            >
+              <div
+                class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl mb-6 group-hover:scale-110 transition-transform"
+              >
+                <i class="fa-solid fa-shield-virus"></i>
+              </div>
+              <h3 class="font-tech text-xl font-bold text-white mb-3">
+                Testes Rigorosos de Hardware
+              </h3>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                Todos os aparelhos seminovos passam por uma bateria de mais de
+                30 testes técnicos de funcionalidade, bateria, tela e
+                componentes originais.
+              </p>
+            </div>
+
+            <!-- Feature Card 2 -->
+            <div
+              class="glass-card glass-card-hover p-8 rounded-2xl relative overflow-hidden group"
+            >
+              <div
+                class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl mb-6 group-hover:scale-110 transition-transform"
+              >
+                <i class="fa-solid fa-handshake-simple"></i>
+              </div>
+              <h3 class="font-tech text-xl font-bold text-white mb-3">
+                Troca Inteligente (Trade-In)
+              </h3>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                Aceitamos o seu iPhone usado como parte do pagamento com uma das
+                melhores e mais honestas avaliações do mercado.
+              </p>
+            </div>
+
+            <!-- Feature Card 3 -->
+            <div
+              class="glass-card glass-card-hover p-8 rounded-2xl relative overflow-hidden group"
+            >
+              <div
+                class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl mb-6 group-hover:scale-110 transition-transform"
+              >
+                <i class="fa-solid fa-headset"></i>
+              </div>
+              <h3 class="font-tech text-xl font-bold text-white mb-3">
+                Atendimento VIP & Pós-Venda
+              </h3>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                Suporte dedicado via WhatsApp antes, durante e após a sua compra
+                para garantir total satisfação e segurança.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Instagram Feed Section -->
+      <section id="instagram" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            class="glass-card rounded-3xl p-8 sm:p-12 border-gold-500/30 glow-gold relative overflow-hidden"
+          >
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div class="lg:col-span-5 space-y-4">
+                <span
+                  class="text-gold-400 font-tech text-xs tracking-widest uppercase font-bold"
+                  >Comunidade PG Smart Tech</span
+                >
+                <h2 class="text-3xl sm:text-4xl font-tech font-bold text-white">
+                  SIGA O NOSSO <br /><span class="gold-gradient-text"
+                    >INSTAGRAM</span
+                  >
+                </h2>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                  Acompanhe no <strong>@pg.smarttech</strong> as novidades
+                  diárias, unboxings de novos iPhones, entregas para clientes
+                  satisfeitos e ofertas relâmpago exclusivas nos Stories.
+                </p>
+
+                <a
+                  href="https://instagram.com/pg.smarttech"
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl gold-gradient-bg text-black font-bold font-tech text-sm hover:brightness-110 transition-all glow-gold"
+                >
+                  <i class="fa-brands fa-instagram text-xl"></i>
+                  SEGUIR @PG.SMARTTECH
+                </a>
+              </div>
+
+              <!-- Instagram Mock Visual Grid -->
+              <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                <div
+                  class="aspect-square rounded-xl overflow-hidden border border-gold-500/20 group relative"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80"
+                    alt="Instagram Post PG Smart Tech"
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-gold-400 text-sm font-bold gap-2"
+                  >
+                    <i class="fa-brands fa-instagram"></i> @pg.smarttech
+                  </div>
+                </div>
+                <div
+                  class="aspect-square rounded-xl overflow-hidden border border-gold-500/20 group relative"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=400&q=80"
+                    alt="Instagram Post PG Smart Tech"
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-gold-400 text-sm font-bold gap-2"
+                  >
+                    <i class="fa-brands fa-instagram"></i> @pg.smarttech
+                  </div>
+                </div>
+                <div
+                  class="aspect-square rounded-xl overflow-hidden border border-gold-500/20 group relative hidden sm:block"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=400&q=80"
+                    alt="Instagram Post PG Smart Tech"
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div
+                    class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-gold-400 text-sm font-bold gap-2"
+                  >
+                    <i class="fa-brands fa-instagram"></i> @pg.smarttech
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Customer Reviews -->
+      <section
+        id="reviews"
+        class="py-20 border-t border-gold-500/10 bg-dark-800/30"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center space-y-3 mb-16">
+            <span
+              class="text-gold-400 font-tech text-xs tracking-widest uppercase font-bold"
+              >Depoimentos Reais</span
+            >
+            <h2 class="text-3xl sm:text-4xl font-tech font-bold text-white">
+              O QUE DIZEM NOSSOS
+              <span class="gold-gradient-text">CLIENTES</span>
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Review 1 -->
+            <div
+              class="glass-card p-6 rounded-2xl space-y-4 border-gold-500/20"
+            >
+              <div class="flex items-center gap-1 text-gold-400 text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-gray-300 text-sm italic">
+                "Comprei meu iPhone 15 Pro com a PG Smart Tech. Atendimento nota
+                1000! Aparelho lacrado, entrega super rápida e suporte
+                excelente."
+              </p>
+              <div class="flex items-center gap-3 pt-2">
+                <div
+                  class="w-10 h-10 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 font-bold font-tech"
+                >
+                  LC
+                </div>
+                <div>
+                  <h4 class="text-white text-sm font-bold">Lucas C.</h4>
+                  <span class="text-xs text-gray-500">Cliente Verificado</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div
+              class="glass-card p-6 rounded-2xl space-y-4 border-gold-500/20"
+            >
+              <div class="flex items-center gap-1 text-gold-400 text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-gray-300 text-sm italic">
+                "Dei meu iPhone 13 na troca pelo 15 Pro Max. Me deram a melhor
+                avaliação de todas as lojas que cotei. Super recomendo!"
+              </p>
+              <div class="flex items-center gap-3 pt-2">
+                <div
+                  class="w-10 h-10 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 font-bold font-tech"
+                >
+                  MF
+                </div>
+                <div>
+                  <h4 class="text-white text-sm font-bold">Mariana F.</h4>
+                  <span class="text-xs text-gray-500">Cliente Verificado</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div
+              class="glass-card p-6 rounded-2xl space-y-4 border-gold-500/20"
+            >
+              <div class="flex items-center gap-1 text-gold-400 text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-gray-300 text-sm italic">
+                "Aparelho impecável com bateria excelente. Transparência total
+                na venda e garantia garantida de verdade. Atendimento nota 10!"
+              </p>
+              <div class="flex items-center gap-3 pt-2">
+                <div
+                  class="w-10 h-10 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 font-bold font-tech"
+                >
+                  RS
+                </div>
+                <div>
+                  <h4 class="text-white text-sm font-bold">Rodrigo S.</h4>
+                  <span class="text-xs text-gray-500">Cliente Verificado</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Cart Drawer (Offcanvas Slide-over) -->
+    <div
+      id="cartDrawerOverlay"
+      onclick="toggleCartDrawer()"
+      class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"
+    ></div>
+
+    <div
+      id="cartDrawer"
+      class="fixed top-0 right-0 h-full w-full max-w-md bg-dark-900 border-l border-gold-500/30 z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-between shadow-2xl"
+    >
+      <!-- Drawer Header -->
+      <div
+        class="p-6 border-b border-gold-500/20 flex items-center justify-between bg-dark-800/50"
+      >
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-cart-shopping text-gold-400 text-xl"></i>
+          <h3 class="font-tech text-lg font-bold text-white">MEU SEU PEDIDO</h3>
+        </div>
+        <button
+          onclick="toggleCartDrawer()"
+          class="text-gray-400 hover:text-gold-400 p-2 transition-colors"
+        >
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+
+      <!-- Cart Items List -->
+      <div class="p-6 overflow-y-auto flex-1 space-y-4" id="cartItemsContainer">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Drawer Footer & Order Form -->
+      <div class="p-6 border-t border-gold-500/20 bg-dark-800/80 space-y-4">
+        <!-- Name Input -->
+        <div>
+          <label
+            class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1"
+            >Seu Nome Completo</label
+          >
+          <input
+            type="text"
+            id="customerName"
+            placeholder="Digite seu nome para o atendimento"
+            class="w-full bg-dark-900 border border-gold-500/30 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-400 transition-colors"
+          />
+        </div>
+
+        <!-- Payment Preference -->
+        <div>
+          <label
+            class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1"
+            >Forma de Pagamento Preferida</label
+          >
+          <select
+            id="paymentMethod"
+            class="w-full bg-dark-900 border border-gold-500/30 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-400 transition-colors"
+          >
+            <option value="PIX / À Vista (Com Desconto)">
+              PIX / À Vista (Com Desconto)
+            </option>
+            <option value="Cartão de Crédito (até 18x)">
+              Cartão de Crédito (até 18x)
+            </option>
+            <option value="Troca + Diferença no PIX/Cartão">
+              Entregar meu usado na Troca
+            </option>
+          </select>
+        </div>
+
+        <!-- Summary Total -->
+        <div
+          class="pt-2 flex justify-between items-center border-t border-gray-800"
+        >
+          <span class="text-gray-400 text-sm font-medium"
+            >Subtotal Estimado:</span
+          >
+          <span class="text-xl font-bold font-tech text-gold-400" id="cartTotal"
+            >R$ 0,00</span
+          >
+        </div>
+
+        <!-- Finish Order Button -->
+        <button
+          onclick="sendWhatsAppOrder()"
+          class="w-full py-4 rounded-xl gold-gradient-bg text-black font-tech font-bold text-sm hover:brightness-110 transition-all glow-gold flex items-center justify-center gap-3"
+        >
+          <i class="fa-brands fa-whatsapp text-xl"></i>
+          FINALIZAR NO WHATSAPP
+        </button>
+      </div>
+    </div>
+
+    <!-- Storage & Color Selection Modal -->
+    <div
+      id="productModal"
+      class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="glass-card max-w-lg w-full rounded-3xl p-6 border-gold-500/40 glow-gold relative space-y-6"
+      >
+        <button
+          onclick="closeProductModal()"
+          class="absolute top-4 right-4 text-gray-400 hover:text-gold-400 p-2"
+        >
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+
+        <div class="flex gap-4 items-center border-b border-gold-500/20 pb-4">
+          <img
+            id="modalImg"
+            src=""
+            alt=""
+            class="w-20 h-20 object-contain rounded-xl bg-dark-800 p-2 border border-gold-500/20"
+          />
+          <div>
+            <span
+              class="text-[10px] font-tech font-bold text-gold-400 uppercase tracking-widest"
+              id="modalCategory"
+              >APPLE</span
+            >
+            <h3 class="font-tech text-xl font-bold text-white" id="modalTitle">
+              Nome do Produto
+            </h3>
+            <p class="text-xs text-gray-400" id="modalCondition">
+              Condição: Novo Lacrado ou Seminovos Premium
+            </p>
+          </div>
+        </div>
+
+        <!-- Storage Selection -->
+        <div>
+          <label
+            class="block text-xs font-semibold text-gold-400 uppercase tracking-wider mb-2"
+            >Selecione a Capacidade</label
+          >
+          <div class="grid grid-cols-3 gap-2" id="modalStorageOptions">
+            <!-- Options inserted via JS -->
+          </div>
+        </div>
+
+        <!-- Color Selection -->
+        <div>
+          <label
+            class="block text-xs font-semibold text-gold-400 uppercase tracking-wider mb-2"
+            >Selecione a Cor</label
+          >
+          <div class="grid grid-cols-2 gap-2" id="modalColorOptions">
+            <!-- Options inserted via JS -->
+          </div>
+        </div>
+
+        <!-- Price Display & Confirm -->
+        <div
+          class="pt-4 border-t border-gold-500/20 flex items-center justify-between"
+        >
+          <div>
+            <span class="text-xs text-gray-400 block">Valor Final:</span>
+            <span
+              class="font-tech text-2xl font-bold text-gold-400"
+              id="modalPrice"
+              >R$ 0,00</span
+            >
+          </div>
+          <button
+            onclick="confirmAddToCart()"
+            class="px-6 py-3 rounded-xl gold-gradient-bg text-black font-tech font-bold text-xs hover:brightness-110 transition-all glow-gold flex items-center gap-2"
+          >
+            <i class="fa-solid fa-cart-plus text-base"></i>
+            ADICIONAR
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-dark-900 border-t border-gold-500/20 py-12 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <!-- Brand Info -->
+          <div class="space-y-4 md:col-span-2">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-8 h-8 rounded-full border border-gold-500 flex items-center justify-center bg-black glow-gold"
+              >
+                <i class="fa-brands fa-apple text-gold-400 text-sm"></i>
+              </div>
+              <span class="font-tech text-lg font-bold text-white"
+                >PG SMART TECH</span
+              >
+            </div>
+            <p class="text-gray-400 text-xs leading-relaxed max-w-sm">
+              Especialistas em ecossistema Apple. iPhones novos e seminovos com
+              garantia de procedência, testes técnicos completos e atendimento
+              personalizado.
+            </p>
+            <div class="flex items-center gap-3 text-gold-400">
+              <a
+                href="https://instagram.com/pg.smarttech"
+                target="_blank"
+                class="w-9 h-9 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center hover:bg-gold-500/30 transition-all"
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a
+                href="https://wa.me/5511999999999"
+                target="_blank"
+                class="w-9 h-9 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center hover:bg-gold-500/30 transition-all"
+              >
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <div>
+            <h4
+              class="font-tech text-sm font-bold text-white uppercase tracking-wider mb-4"
+            >
+              Navegação
+            </h4>
+            <ul class="space-y-2 text-xs text-gray-400">
+              <li>
+                <a href="#hero" class="hover:text-gold-400 transition-colors"
+                  >Início</a
+                >
+              </li>
+              <li>
+                <a href="#catalog" class="hover:text-gold-400 transition-colors"
+                  >Catálogo iPhones</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#features"
+                  class="hover:text-gold-400 transition-colors"
+                  >Diferenciais</a
+                >
+              </li>
+              <li>
+                <a href="#reviews" class="hover:text-gold-400 transition-colors"
+                  >Avaliações</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact & Location -->
+          <div>
+            <h4
+              class="font-tech text-sm font-bold text-white uppercase tracking-wider mb-4"
+            >
+              Atendimento
+            </h4>
+            <ul class="space-y-2 text-xs text-gray-400">
+              <li class="flex items-center gap-2">
+                <i class="fa-brands fa-instagram text-gold-400"></i>
+                <span>@pg.smarttech</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-brands fa-whatsapp text-gold-400"></i>
+                <span>Atendimento via WhatsApp</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-shield-check text-gold-400"></i>
+                <span>Garantia PG Smart Tech</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="pt-8 border-t border-gray-800 text-center text-xs text-gray-500 font-light flex flex-col sm:flex-row justify-between items-center gap-4"
+        >
+          <p>
+            © 2026 PG Smart Tech. Todos os direitos reservados. "iPhone é Aqui".
+          </p>
+          <div class="flex items-center gap-2 text-gold-400/80">
+            <i class="fa-solid fa-bolt"></i>
+            <span class="font-tech text-[10px]"
+              >PÁGINA OFICIAL - ALTA PERFORMANCE</span
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Data Catalog Array
+      const products = [
+        {
+          id: "1",
+          name: "iPhone 15 Pro Max",
+          category: "iphone-15",
+          image:
+            "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80",
+          badge: "Nº 1 MAIS VENDIDO",
+          condition: "Novo ou Seminovo Premium",
+          storages: [
+            { size: "256GB", price: 7290 },
+            { size: "512GB", price: 8190 },
+            { size: "1TB", price: 9290 },
+          ],
+          colors: [
+            "Titânio Natural",
+            "Titânio Preto",
+            "Titânio Azul",
+            "Titânio Branco",
+          ],
+        },
+        {
+          id: "2",
+          name: "iPhone 15 Pro",
+          category: "iphone-15",
+          image:
+            "https://images.unsplash.com/photo-1695048065057-234e402b85fa?auto=format&fit=crop&w=600&q=80",
+          badge: "DESTAQUE TECH",
+          condition: "Novo ou Seminovo Impecável",
+          storages: [
+            { size: "128GB", price: 5890 },
+            { size: "256GB", price: 6490 },
+            { size: "512GB", price: 7390 },
+          ],
+          colors: ["Titânio Natural", "Titânio Preto", "Titânio Azul"],
+        },
+        {
+          id: "3",
+          name: "iPhone 15",
+          category: "iphone-15",
+          image:
+            "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=600&q=80",
+          badge: "EXCELENTE CUSTO BENEFÍCIO",
+          condition: "Seminovo Garantido 100%",
+          storages: [
+            { size: "128GB", price: 4390 },
+            { size: "256GB", price: 4990 },
+          ],
+          colors: ["Preto", "Rosa", "Azul", "Verde"],
+        },
+        {
+          id: "4",
+          name: "iPhone 14 Pro Max",
+          category: "iphone-14",
+          image:
+            "https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?auto=format&fit=crop&w=600&q=80",
+          badge: "O QUERIDINHO",
+          condition: "Seminovo Grau A+",
+          storages: [
+            { size: "128GB", price: 5290 },
+            { size: "256GB", price: 5790 },
+            { size: "512GB", price: 6490 },
+          ],
+          colors: ["Roxo-Profundo", "Dourado", "Preto-Espacial", "Prateado"],
+        },
+        {
+          id: "5",
+          name: "iPhone 13",
+          category: "iphone-13",
+          image:
+            "https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&w=600&q=80",
+          badge: "CAMPEÃO DE VENDAS",
+          condition: "Seminovo Revisado",
+          storages: [
+            { size: "128GB", price: 3190 },
+            { size: "256GB", price: 3690 },
+          ],
+          colors: ["Meia-noite", "Estelar", "Azul", "Rosa"],
+        },
+        {
+          id: "6",
+          name: "Apple Watch Series 9",
+          category: "accessories",
+          image:
+            "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=600&q=80",
+          badge: "ÁUDIO & WATCH",
+          condition: "Novo Lacrado",
+          storages: [
+            { size: "41mm", price: 2890 },
+            { size: "45mm", price: 3190 },
+          ],
+          colors: [
+            "Caixa Alumínio Meia-Noite",
+            "Caixa Estelar",
+            "Caixa Prateada",
+          ],
+        },
+      ];
+
+      // Shopping Cart State
+      let cart = [];
+      let selectedProductModal = null;
+      let selectedStorageIndex = 0;
+      let selectedColor = "";
+
+      // Render Product Catalog
+      function renderProducts(filterCategoryName = "all") {
+        const grid = document.getElementById("productGrid");
+        grid.innerHTML = "";
+
+        const filtered =
+          filterCategoryName === "all"
+            ? products
+            : products.filter((p) => p.category === filterCategoryName);
+
+        filtered.forEach((p) => {
+          const basePrice = p.storages[0].price;
+          const formattedPrice = basePrice.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          });
+
+          const cardHtml = `
+                    <div class="glass-card glass-card-hover rounded-3xl p-6 relative flex flex-col justify-between border-gold-500/20 group">
+                        <!-- Top Badge -->
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-[10px] font-bold font-tech bg-gold-500/20 text-gold-400 border border-gold-500/30 px-3 py-1 rounded-full uppercase">
+                                ${p.badge}
+                            </span>
+                            <i class="fa-brands fa-apple text-gold-400 text-xl"></i>
+                        </div>
+
+                        <!-- Product Image Mockup -->
+                        <div class="relative py-6 flex justify-center items-center">
+                            <div class="absolute w-36 h-36 bg-gold-500/10 rounded-full blur-xl group-hover:bg-gold-500/25 transition-all"></div>
+                            <img src="${p.image}" alt="${p.name}" class="relative z-10 max-h-52 object-contain rounded-xl group-hover:scale-105 transition-transform duration-300">
+                        </div>
+
+                        <!-- Product Info -->
+                        <div class="space-y-3 pt-2">
+                            <h3 class="font-tech text-xl font-bold text-white group-hover:text-gold-400 transition-colors">${p.name}</h3>
+                            <p class="text-xs text-gray-400">${p.condition}</p>
+                            
+                            <div class="flex flex-wrap gap-1 pt-1">
+                                ${p.storages.map((s) => `<span class="text-[10px] bg-dark-800 text-gray-300 px-2 py-0.5 rounded border border-gray-700">${s.size}</span>`).join("")}
+                            </div>
+
+                            <div class="flex items-center justify-between pt-3 border-t border-gold-500/15">
+                                <div>
+                                    <span class="text-[10px] text-gray-400 block uppercase font-medium">A partir de</span>
+                                    <span class="font-tech text-xl font-bold text-gold-400">${formattedPrice}</span>
+                                </div>
+                                <button onclick="openProductModal('${p.id}')" class="px-4 py-2.5 rounded-xl gold-gradient-bg text-black font-tech font-bold text-xs hover:brightness-110 transition-all glow-gold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    COMPRAR
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+          grid.innerHTML += cardHtml;
+        });
+      }
+
+      // Category Filter Handling
+      function filterCategory(cat) {
+        document.querySelectorAll(".cat-btn").forEach((btn) => {
+          btn.classList.remove("bg-gold-500", "text-black");
+          btn.classList.add("glass-card", "text-gray-300");
+        });
+
+        event.currentTarget.classList.remove("glass-card", "text-gray-300");
+        event.currentTarget.classList.add("bg-gold-500", "text-black");
+
+        renderProducts(cat);
+      }
+
+      // Modal Functionality
+      function openProductModal(productId) {
+        selectedProductModal = products.find((p) => p.id === productId);
+        selectedStorageIndex = 0;
+        selectedColor = selectedProductModal.colors[0];
+
+        document.getElementById("modalImg").src = selectedProductModal.image;
+        document.getElementById("modalTitle").innerText =
+          selectedProductModal.name;
+        document.getElementById("modalCondition").innerText =
+          selectedProductModal.condition;
+
+        // Render Storage Buttons
+        const storageContainer = document.getElementById("modalStorageOptions");
+        storageContainer.innerHTML = selectedProductModal.storages
+          .map(
+            (s, idx) => `
+                <button onclick="selectStorage(${idx})" id="storageBtn_${idx}" class="modal-storage-btn ${idx === 0 ? "bg-gold-500 text-black font-bold" : "glass-card text-gray-300"} text-xs py-2 rounded-xl border border-gold-500/30 transition-all">
+                    ${s.size}
+                </button>
+            `,
+          )
+          .join("");
+
+        // Render Color Buttons
+        const colorContainer = document.getElementById("modalColorOptions");
+        colorContainer.innerHTML = selectedProductModal.colors
+          .map(
+            (c, idx) => `
+                <button onclick="selectColor('${c}', this)" class="modal-color-btn ${idx === 0 ? "bg-gold-500/30 text-gold-400 border-gold-400" : "glass-card text-gray-300 border-gold-500/20"} text-[11px] py-2 px-2 rounded-xl border transition-all truncate">
+                    ${c}
+                </button>
+            `,
+          )
+          .join("");
+
+        updateModalPrice();
+        document.getElementById("productModal").classList.remove("hidden");
+      }
+
+      function selectStorage(index) {
+        selectedStorageIndex = index;
+        document.querySelectorAll(".modal-storage-btn").forEach((btn, i) => {
+          if (i === index) {
+            btn.className =
+              "modal-storage-btn bg-gold-500 text-black font-bold text-xs py-2 rounded-xl border border-gold-500 transition-all";
+          } else {
+            btn.className =
+              "modal-storage-btn glass-card text-gray-300 text-xs py-2 rounded-xl border border-gold-500/30 transition-all";
+          }
+        });
+        updateModalPrice();
+      }
+
+      function selectColor(colorName, btnEl) {
+        selectedColor = colorName;
+        document.querySelectorAll(".modal-color-btn").forEach((btn) => {
+          btn.className =
+            "modal-color-btn glass-card text-gray-300 text-[11px] py-2 px-2 rounded-xl border border-gold-500/20 transition-all truncate";
+        });
+        btnEl.className =
+          "modal-color-btn bg-gold-500/30 text-gold-400 border-gold-400 font-bold text-[11px] py-2 px-2 rounded-xl border transition-all truncate";
+      }
+
+      function updateModalPrice() {
+        const currentPrice =
+          selectedProductModal.storages[selectedStorageIndex].price;
+        document.getElementById("modalPrice").innerText =
+          currentPrice.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          });
+      }
+
+      function closeModalProductModal() {
+        document.getElementById("productModal").classList.add("hidden");
+      }
+
+      function closeProductModal() {
+        closeModalProductModal();
+      }
+
+      // Cart Drawer Handlers
+      function toggleCartDrawer() {
+        const drawer = document.getElementById("cartDrawer");
+        const overlay = document.getElementById("cartDrawerOverlay");
+
+        drawer.classList.toggle("translate-x-full");
+        overlay.classList.toggle("opacity-0");
+        overlay.classList.toggle("pointer-events-none");
+      }
+
+      function confirmAddToCart() {
+        const storageObj = selectedProductModal.storages[selectedStorageIndex];
+        const cartItem = {
+          id: Date.now().toString(),
+          name: selectedProductModal.name,
+          image: selectedProductModal.image,
+          storage: storageObj.size,
+          color: selectedColor,
+          price: storageObj.price,
+        };
+
+        cart.push(cartItem);
+        updateCartUI();
+        closeProductModal();
+        toggleCartDrawer();
+      }
+
+      function removeFromCart(itemId) {
+        cart = cart.filter((item) => item.id !== itemId);
+        updateCartUI();
+      }
+
+      function updateCartUI() {
+        document.getElementById("cartBadge").innerText = cart.length;
+
+        const container = document.getElementById("cartItemsContainer");
+        if (cart.length === 0) {
+          container.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <i class="fa-solid fa-cart-flatbed text-gray-600 text-4xl"></i>
+                        <p class="text-gray-400 text-sm">Seu carrinho está vazio.</p>
+                        <a href="#catalog" onclick="toggleCartDrawer()" class="text-xs font-tech text-gold-400 underline block">Escolha seu novo iPhone no catálogo</a>
+                    </div>
+                `;
+        } else {
+          container.innerHTML = cart
+            .map(
+              (item) => `
+                    <div class="glass-card p-4 rounded-2xl flex items-center gap-4 border-gold-500/20 relative">
+                        <img src="${item.image}" alt="" class="w-16 h-16 object-contain rounded-lg bg-dark-800 p-1">
+                        <div class="flex-1">
+                            <h4 class="font-tech text-sm font-bold text-white">${item.name}</h4>
+                            <p class="text-xs text-gold-400 font-medium">${item.storage} • ${item.color}</p>
+                            <p class="text-sm font-bold text-white mt-1">${item.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</p>
+                        </div>
+                        <button onclick="removeFromCart('${item.id}')" class="text-gray-500 hover:text-red-400 p-2 transition-colors">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                `,
+            )
+            .join("");
+        }
+
+        const total = cart.reduce((acc, curr) => acc + curr.price, 0);
+        document.getElementById("cartTotal").innerText = total.toLocaleString(
+          "pt-BR",
+          { style: "currency", currency: "BRL" },
+        );
+      }
+
+      // WhatsApp Order Dispatcher
+      function sendWhatsAppOrder() {
+        if (cart.length === 0) {
+          alert(
+            "Seu carrinho está vazio! Adicione pelo menos um produto do catálogo.",
+          );
+          return;
+        }
+
+        const name =
+          document.getElementById("customerName").value.trim() ||
+          "Cliente PG Smart Tech";
+        const payment = document.getElementById("paymentMethod").value;
+        const total = cart
+          .reduce((acc, curr) => acc + curr.price, 0)
+          .toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+        let itemsText = "";
+        cart.forEach((item, i) => {
+          itemsText += `%0A*${i + 1}. ${item.name}*%0A  • Capacidade: ${item.storage}%0A  • Cor: ${item.color}%0A  • Valor: ${item.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}%0A`;
+        });
+
+        const whatsappMessage = `*NOVO PEDIDO - PG SMART TECH*%0A%0A*Nome do Cliente:* ${encodeURIComponent(name)}%0A*Forma de Pagamento:* ${encodeURIComponent(payment)}%0A%0A*ITENS SOLICITADOS:*${itemsText}%0A*SUBTOTAL ESTIMADO:* ${encodeURIComponent(total)}%0A%0AGostaria de verificar a disponibilidade e finalizar o meu pedido!`;
+
+        const whatsappUrl = `https://wa.me/5511999999999?text=${whatsappMessage}`;
+        window.open(whatsappUrl, "_blank");
+      }
+
+      // Futuristic Particle Canvas Background
+      const canvas = document.getElementById("bgCanvas");
+      const ctx = canvas.getContext("2d");
+      let particles = [];
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 1.5 + 0.5;
+          this.speedX = (Math.random() - 0.5) * 0.3;
+          this.speedY = (Math.random() - 0.5) * 0.3;
+          this.alpha = Math.random() * 0.5 + 0.2;
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          if (this.x < 0) this.x = canvas.width;
+          if (this.x > canvas.width) this.x = 0;
+          if (this.y < 0) this.y = canvas.height;
+          if (this.y > canvas.height) this.y = 0;
+        }
+        draw() {
+          ctx.fillStyle = `rgba(255, 215, 0, ${this.alpha})`;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      function initParticles() {
+        particles = [];
+        const count = Math.floor((canvas.width * canvas.height) / 18000);
+        for (let i = 0; i < count; i++) {
+          particles.push(new Particle());
+        }
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animateParticles);
+      }
+
+      // Init App on Load
+      window.onload = function () {
+        renderProducts();
+        updateCartUI();
+        initParticles();
+        animateParticles();
+      };
+    </script>
+  </body>
+</html>
